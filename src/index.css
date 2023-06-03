@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .react-flow__node-selectorNode {
   font-size: 12px;
   background: #eee;

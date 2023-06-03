@@ -30,6 +30,13 @@ export default memo(({ data, isConnectable }) => {
         style={{ bottom: 10, top: 'auto', background: '#555' }}
         isConnectable={isConnectable}
       />
+      <Handle
+        type="source"
+        position={Position.Right}
+        id="c"
+        style={{ bottom: 10, background: '#555' }}
+        isConnectable={isConnectable}
+      />
     </>
   );
 });

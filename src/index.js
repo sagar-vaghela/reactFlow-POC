@@ -4,12 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { ThemeProvider } from "@material-tailwind/react";
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+  <ThemeProvider>
     <div style={{width: '100vw', height: '100vh'}}>
     <App />
     </div>
+    </ThemeProvider>
   </React.StrictMode>
 );
 

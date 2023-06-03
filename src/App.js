@@ -3,6 +3,7 @@ import ReactFlow, { useNodesState, useEdgesState, addEdge, MiniMap, Controls } f
 import 'reactflow/dist/style.css';
 
 import ColorSelectorNode from './ColorSelectorNode';
+import AccordionNode from './AccordionNode.js';
 
 import './index.css';
 
@@ -12,6 +13,7 @@ const connectionLineStyle = { stroke: '#fff' };
 const snapGrid = [20, 20];
 const nodeTypes = {
   selectorNode: ColorSelectorNode,
+  accordionNode: AccordionNode,
 };
 
 const defaultViewport = { x: 0, y: 0, zoom: 1.5 };
@@ -25,7 +27,7 @@ const App = () => {
     const onChange = (event) => {
       setNodes((nds) =>
         nds.map((node) => {
-          if (node.id !== '2') {
+          if (node.id !== '2' && node.id !== '4') {
             return node;
           }
 
@@ -68,10 +70,35 @@ const App = () => {
       },
       {
         id: '4',
-        type: 'output',
-        data: { label: 'Output B' },
+        type: 'accordionNode',
+        data: { onChange: onChange},
+        position: { x: 650, y: 300 },
+        style: {    padding: '10px',
+          borderRadius: '3px',
+          width: '400px',
+          fontSize: '12px',
+          color: '#222',
+          textAlign: 'center',
+          borderWidth: '1px',
+          borderStyle: 'solid',
+          borderColor: '#1a192b',
+          backgroundColor: 'white',},
+      },
+      {
+        id: '5',
+        type: 'accordionNode',
+        data: { onChange: onChange},
         position: { x: 650, y: 100 },
-        targetPosition: 'left',
+        style: {    padding: '10px',
+          borderRadius: '3px',
+          width: '400px',
+          fontSize: '12px',
+          color: '#222',
+          textAlign: 'center',
+          borderWidth: '1px',
+          borderStyle: 'solid',
+          borderColor: '#1a192b',
+          backgroundColor: 'white',},
       }
     ]);
 
@@ -99,6 +126,14 @@ const App = () => {
         animated: true,
         style: { stroke: '#fff' },
       },
+      {
+        id: 'e2c-5',
+        source: '2',
+        target: '5',
+        sourceHandle: 'c',
+        animated: true,
+        style: { stroke: '#fff' },
+      }
     ]);
   }, []);
 
@@ -127,6 +162,7 @@ const App = () => {
         nodeStrokeColor={(n) => {
           if (n.type === 'input') return '#0041d0';
           if (n.type === 'selectorNode') return bgColor;
+          if (n.type === 'accordionNode') return '#ff0072';
           if (n.type === 'output') return '#ff0072';
         }}
         nodeColor={(n) => {
